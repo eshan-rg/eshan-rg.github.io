@@ -4,25 +4,10 @@ project:
 
 website:
   title: "Eshan Gujarathi"
-  sidebar:
-    background: primary
-    # logo: "images/logo.png"
-    pinned: true
-    align: center
-    tools:
-      - icon: github
-        href: https://github.com/eshan-rg
-        text: GitHub
-    style: docked
-    contents:
+  navbar:
+    right:
       - href: index.qmd
         text: Home
-      - href: schedule.qmd
-        text: Schedule
-      - href: materials.qmd
-        text: Materials
-      - href: https://github.com/Pakillo/quarto-course-website-template/discussions
-        text: Forum
 
 format:
   html:
