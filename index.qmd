@@ -1,6 +1,6 @@
 ---
 title: Eshan Gujarathi
-image: images/eshan.jpg
+image: images/Eshan_dp_cropped.jpg
 about:
   template: jolla
   image-width: 10em
