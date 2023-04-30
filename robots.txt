@@ -1,1 +1,1 @@
-Sitemap: https://github.com/eshan-rg/website/sitemap.xml
+Sitemap: https://github.com/eshan-rg/home/sitemap.xml
