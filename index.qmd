@@ -2,6 +2,7 @@
 title: Eshan Gujarathi
 image: Images/Eshan_dp_cropped.jpg
 about:
+  id: hero-heading
   template: jolla
   image-width: 12em
   image-shape: round
@@ -22,7 +23,11 @@ about:
       text: Google Scholar
       href: https://scholar.google.com/citations?user=8Jzb7fQAAAAJ&hl=en&oi=ao   
 ---
-
+:::{#hero-heading}
 I am a senior undergraduate majoring in Computer Science and Engineering at the Indian Institute of Technology Gandhinagar, India. I am a creative, diligent, and result-oriented individual who always looks for new opportunities to grow.
 
 My research interests include Applied Machine Learning, Bayesian Learning, Computer Vision, and Data Science. I am passionate about applying Artificial Intelligence to critical applications with a broader impact.
+:::
+
+Education:
+Indian Institute of Technology Gandhinagar
