@@ -8,6 +8,8 @@ website:
     right:
       - href: index.qmd
         text: Home
+      - href: Teaching.qmd
+        text: Teaching
 
 format:
   html:
