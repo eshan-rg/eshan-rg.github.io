@@ -3,8 +3,8 @@ title: Eshan Gujarathi
 image: Images/Eshan_dp_cropped.jpg
 about:
   template: jolla
-  image-width: 10em
-  image-shape: rounded
+  image-width: 12em
+  image-shape: round
   links:
     - icon: twitter
       text: Twitter
