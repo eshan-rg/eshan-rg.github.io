@@ -10,12 +10,14 @@ website:
         text: Home
       - href: publications.qmd
         text: Publications
-      - href: Teaching.qmd
+      - href: teaching.qmd
         text: Teaching
       - href: https://drive.google.com/file/d/1lQFYYaDovnqgM81TEpzJRC1mkko1j6sD/view?usp=sharing
         text: CV
-      - blogs: blogs
+      - href: blogs
         text: Blogs
+      - href: achievements.qmd
+        text: Achievements
 
 format:
   html:
