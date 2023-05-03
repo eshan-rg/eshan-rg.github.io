@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://github.com/eshan-rg/eshan-rg.github.io/achievements.html</loc>
+    <lastmod>2023-05-03T09:58:31.747Z</lastmod>
+  </url>
+  <url>
     <loc>https://github.com/eshan-rg/eshan-rg.github.io/publications.html</loc>
-    <lastmod>2023-05-03T09:58:16.589Z</lastmod>
+    <lastmod>2023-05-03T09:58:32.351Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/eshan-rg/eshan-rg.github.io/teaching.html</loc>
-    <lastmod>2023-05-03T09:58:17.189Z</lastmod>
+    <lastmod>2023-05-03T09:58:32.635Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/eshan-rg/eshan-rg.github.io/index.html</loc>
-    <lastmod>2023-05-03T09:58:17.501Z</lastmod>
+    <lastmod>2023-05-03T09:58:32.923Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/eshan-rg/eshan-rg.github.io/read.html</loc>
-    <lastmod>2023-05-03T09:58:17.825Z</lastmod>
+    <lastmod>2023-05-03T09:58:33.179Z</lastmod>
   </url>
 </urlset>
