@@ -1,0 +1,6 @@
+---
+title: "Publications"
+---
+- ## [Deep Gaussian Processes for Air Quality Inference](https://dl.acm.org/doi/10.1145/3570991.3571004)
+  **Eshan Gujarathi***, Aadesh Desai*, Saagar Parikh*, Sachin Yadav*, Zeel Patel, Nipun Batra.
+  Accepted in ACM India 6th Joint International Conference on Data Science & Management of Data (10th ACM IKDD CODS and 28th COMAD) (**CODS-COMAD 2023**).
