@@ -14,7 +14,7 @@ website:
         text: Teaching
       - href: https://drive.google.com/file/d/1lQFYYaDovnqgM81TEpzJRC1mkko1j6sD/view?usp=sharing
         text: CV
-      - href: blogs
+      - href: blogs.qmd
         text: Blogs
       - href: achievements.qmd
         text: Achievements
