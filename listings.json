@@ -1,6 +1,8 @@
 [
   {
     "listing": "/blogs.html",
-    "items": []
+    "items": [
+      "/blogs/fcnn_on_mnist.html"
+    ]
   }
 ]
