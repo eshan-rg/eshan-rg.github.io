@@ -70,9 +70,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -165,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ML">ML <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -178,19 +178,39 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1683437648013" data-listing-reading-time-sort="0">
+<div class="quarto-post image-right" data-index="0" data-categories="ML" data-listing-date-sort="1683417600000" data-listing-file-modified-sort="1683439186924" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
 <div class="thumbnail">
 <p><a href="./blogs/fcnn_on_mnist.html"> <p class="card-img-top"><img src="blogs/fcnn_on_mnist_files/figure-html/cell-16-output-1.png"  class="thumbnail-image card-img"/></p> </a></p>
 </div>
 <div class="body">
 <a href="./blogs/fcnn_on_mnist.html">
-<div class="listing-description">
+<h3 class="no-anchor listing-title">
+FCNN on MNIST
+</h3>
+<div class="listing-subtitle">
 
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('ML'); return false;">
+ML
+</div>
+</div>
+<a href="./blogs/fcnn_on_mnist.html">
+<div class="listing-description">
+<p>Simple FCNN on MNIST dataset and evaluation metrics</p>
 </div>
 </a>
 </div>
 <div class="metadata">
-<a href="./blogs/fcnn_on_mnist.html"> </a>
+<a href="./blogs/fcnn_on_mnist.html">
+<div class="listing-date">
+May 7, 2023
+</div>
+<div class="listing-author">
+Eshan Gujarathi
+</div>
+</a>
 </div>
 </div>
 </div>
