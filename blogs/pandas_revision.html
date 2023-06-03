@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Eshan Gujarathi - Pandas cheat sheet</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Eshan Gujarathi</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../publications.html" rel="" target="">
+ <span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../teaching.html" rel="" target="">
+ <span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://drive.google.com/file/d/1lQFYYaDovnqgM81TEpzJRC1mkko1j6sD/view?usp=sharing" rel="" target="">
+ <span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blogs.html" rel="" target="">
+ <span class="menu-text">Blogs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../achievements.html" rel="" target="">
+ <span class="menu-text">Achievements</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#finding-correlation-between-columns-and-plotting-it-in-more-readable-way" id="toc-finding-correlation-between-columns-and-plotting-it-in-more-readable-way" class="nav-link active" data-scroll-target="#finding-correlation-between-columns-and-plotting-it-in-more-readable-way">Finding correlation between columns and plotting it in more readable way</a></li>
+  <li><a href="#plotting-pairwise-distributions" id="toc-plotting-pairwise-distributions" class="nav-link" data-scroll-target="#plotting-pairwise-distributions">Plotting pairwise distributions</a></li>
+  <li><a href="#visualizing-time-series-data" id="toc-visualizing-time-series-data" class="nav-link" data-scroll-target="#visualizing-time-series-data">Visualizing time series data</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Pandas cheat sheet</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>In this blog, I go through some of the basics of pandas</p>
+<p>###Importing and using some basic functions of pandas</p>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#imports</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#reading an already existing csv file in a dataframe</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> pd.read_csv(<span class="st">"https://pythonandvba.com/youtube-data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-outputid="be77e0d3-8496-482a-d34f-465d8f71a750" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#printing the first 5 rows</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>raw.head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+
+  <div id="df-6bcab2c1-e6a7-420c-a567-da90a2b579a2">
+    <div class="colab-df-container">
+      <div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Content</th>
+<th data-quarto-table-cell-role="th">Video title</th>
+<th data-quarto-table-cell-role="th">Video publish time</th>
+<th data-quarto-table-cell-role="th">Comments added</th>
+<th data-quarto-table-cell-role="th">Average percentage viewed (%)</th>
+<th data-quarto-table-cell-role="th">Likes</th>
+<th data-quarto-table-cell-role="th">Views</th>
+<th data-quarto-table-cell-role="th">Impressions</th>
+<th data-quarto-table-cell-role="th">Impressions click-through rate (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Wn9L1MD_y0Y</td>
+<td>How To Send WhatsApp Messages From Excel Using...</td>
+<td>19-Dec-20</td>
+<td>885</td>
+<td>26.36</td>
+<td>3057</td>
+<td>265002</td>
+<td>2152704</td>
+<td>6.71</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>svcv8uub0D0</td>
+<td>How to Create an Excel Data Entry Form in 10 M...</td>
+<td>22-May-21</td>
+<td>207</td>
+<td>28.48</td>
+<td>3112</td>
+<td>99259</td>
+<td>1069755</td>
+<td>5.70</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Sb0A9i6d320</td>
+<td>Turn An Excel Sheet Into An Interactive Dashbo...</td>
+<td>11-Sep-21</td>
+<td>192</td>
+<td>13.14</td>
+<td>10175</td>
+<td>442044</td>
+<td>11550064</td>
+<td>2.79</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>VwzaNjpcEZ0</td>
+<td>Send BULK SMS From Your OWN Number Using EXCEL...</td>
+<td>10-Jul-21</td>
+<td>158</td>
+<td>27.57</td>
+<td>537</td>
+<td>50270</td>
+<td>341500</td>
+<td>9.04</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>nJHrSvYxzjE</td>
+<td>Deploy Your Streamlit Web App on Heroku For Fr...</td>
+<td>20-Mar-21</td>
+<td>114</td>
+<td>32.44</td>
+<td>966</td>
+<td>30941</td>
+<td>308074</td>
+<td>5.22</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-6bcab2c1-e6a7-420c-a567-da90a2b579a2')" title="Convert this dataframe to an interactive table." style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"></path><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"></path>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-6bcab2c1-e6a7-420c-a567-da90a2b579a2 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-6bcab2c1-e6a7-420c-a567-da90a2b579a2');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+</div>
+<div class="cell" data-outputid="49872785-3fa3-42ee-9479-ed38e0ca5b91">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#printing the information</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>raw.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 107 entries, 0 to 106
+Data columns (total 9 columns):
+ #   Column                              Non-Null Count  Dtype  
+---  ------                              --------------  -----  
+ 0   Content                             107 non-null    object 
+ 1   Video title                         107 non-null    object 
+ 2   Video publish time                  102 non-null    object 
+ 3   Comments added                      107 non-null    int64  
+ 4   Average percentage viewed (%)       107 non-null    float64
+ 5   Likes                               107 non-null    int64  
+ 6   Views                               107 non-null    int64  
+ 7   Impressions                         107 non-null    int64  
+ 8   Impressions click-through rate (%)  106 non-null    float64
+dtypes: float64(2), int64(4), object(3)
+memory usage: 7.6+ KB</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="ce1ae7dc-4c58-4d09-995e-049e7ec3be47">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#checking for missing values</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>raw.isna().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>Content                               0
+Video title                           0
+Video publish time                    5
+Comments added                        0
+Average percentage viewed (%)         0
+Likes                                 0
+Views                                 0
+Impressions                           0
+Impressions click-through rate (%)    1
+dtype: int64</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="ea821a71-499d-403b-fd76-66dbdb05da75">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#gives the columns with missing values</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>raw[raw.isnull().<span class="bu">any</span>(axis<span class="op">=</span><span class="st">"columns"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+
+  <div id="df-1b0f3b11-1fa1-4938-bd5b-950c0420d30b">
+    <div class="colab-df-container">
+      <div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Content</th>
+<th data-quarto-table-cell-role="th">Video title</th>
+<th data-quarto-table-cell-role="th">Video publish time</th>
+<th data-quarto-table-cell-role="th">Comments added</th>
+<th data-quarto-table-cell-role="th">Average percentage viewed (%)</th>
+<th data-quarto-table-cell-role="th">Likes</th>
+<th data-quarto-table-cell-role="th">Views</th>
+<th data-quarto-table-cell-role="th">Impressions</th>
+<th data-quarto-table-cell-role="th">Impressions click-through rate (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">94</td>
+<td>8E4se9Ah5o8</td>
+<td>MyToolBelt Installation</td>
+<td>NaN</td>
+<td>5</td>
+<td>72.18</td>
+<td>22</td>
+<td>1309</td>
+<td>13</td>
+<td>0.00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">96</td>
+<td>V3Csrk--laM</td>
+<td>Create Invoice Filepath</td>
+<td>NaN</td>
+<td>5</td>
+<td>70.11</td>
+<td>1</td>
+<td>16</td>
+<td>5</td>
+<td>0.00</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">100</td>
+<td>RnTqlKzQhRY</td>
+<td>PySimpleGUI Retrieve Data</td>
+<td>NaN</td>
+<td>4</td>
+<td>85.97</td>
+<td>6</td>
+<td>182</td>
+<td>78</td>
+<td>2.56</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">105</td>
+<td>l4Dd1xLfNVY</td>
+<td>xlwings - demo</td>
+<td>NaN</td>
+<td>0</td>
+<td>102.23</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">106</td>
+<td>pqIjey6Cbhw</td>
+<td>How to resolve "pytube.exceptions.RegexMatchEr...</td>
+<td>NaN</td>
+<td>0</td>
+<td>44.91</td>
+<td>0</td>
+<td>13</td>
+<td>3</td>
+<td>0.00</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-1b0f3b11-1fa1-4938-bd5b-950c0420d30b')" title="Convert this dataframe to an interactive table." style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"></path><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"></path>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-1b0f3b11-1fa1-4938-bd5b-950c0420d30b button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-1b0f3b11-1fa1-4938-bd5b-950c0420d30b');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+</div>
+<div class="cell" data-outputid="ff827246-f2b8-45e4-ca48-19957faa16ce">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#finding the top 3 rows with most values in a particular column</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>raw.nlargest(<span class="dv">3</span>, columns<span class="op">=</span>[<span class="st">"Impressions"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+
+  <div id="df-ea9e9029-ab87-4d80-ade7-962c50ca4d39">
+    <div class="colab-df-container">
+      <div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Content</th>
+<th data-quarto-table-cell-role="th">Video title</th>
+<th data-quarto-table-cell-role="th">Video publish time</th>
+<th data-quarto-table-cell-role="th">Comments added</th>
+<th data-quarto-table-cell-role="th">Average percentage viewed (%)</th>
+<th data-quarto-table-cell-role="th">Likes</th>
+<th data-quarto-table-cell-role="th">Views</th>
+<th data-quarto-table-cell-role="th">Impressions</th>
+<th data-quarto-table-cell-role="th">Impressions click-through rate (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Sb0A9i6d320</td>
+<td>Turn An Excel Sheet Into An Interactive Dashbo...</td>
+<td>11-Sep-21</td>
+<td>192</td>
+<td>13.14</td>
+<td>10175</td>
+<td>442044</td>
+<td>11550064</td>
+<td>2.79</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Wn9L1MD_y0Y</td>
+<td>How To Send WhatsApp Messages From Excel Using...</td>
+<td>19-Dec-20</td>
+<td>885</td>
+<td>26.36</td>
+<td>3057</td>
+<td>265002</td>
+<td>2152704</td>
+<td>6.71</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>svcv8uub0D0</td>
+<td>How to Create an Excel Data Entry Form in 10 M...</td>
+<td>22-May-21</td>
+<td>207</td>
+<td>28.48</td>
+<td>3112</td>
+<td>99259</td>
+<td>1069755</td>
+<td>5.70</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-ea9e9029-ab87-4d80-ade7-962c50ca4d39')" title="Convert this dataframe to an interactive table." style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"></path><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"></path>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-ea9e9029-ab87-4d80-ade7-962c50ca4d39 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-ea9e9029-ab87-4d80-ade7-962c50ca4d39');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+</div>
+<section id="finding-correlation-between-columns-and-plotting-it-in-more-readable-way" class="level3">
+<h3 class="anchored" data-anchor-id="finding-correlation-between-columns-and-plotting-it-in-more-readable-way">Finding correlation between columns and plotting it in more readable way</h3>
+<div class="cell" data-outputid="d92f05fc-3829-417a-aa20-95cf1f7dd748" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>raw.corr()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>FutureWarning: The default value of numeric_only in DataFrame.corr is deprecated. In a future version, it will default to False. Select only valid columns or specify the value of numeric_only to silence this warning.
+  raw.corr()</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+
+  <div id="df-7d36d203-0706-4237-947f-d2126ae83f66">
+    <div class="colab-df-container">
+      <div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Comments added</th>
+<th data-quarto-table-cell-role="th">Average percentage viewed (%)</th>
+<th data-quarto-table-cell-role="th">Likes</th>
+<th data-quarto-table-cell-role="th">Views</th>
+<th data-quarto-table-cell-role="th">Impressions</th>
+<th data-quarto-table-cell-role="th">Impressions click-through rate (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Comments added</td>
+<td>1.000000</td>
+<td>-0.141652</td>
+<td>0.484353</td>
+<td>0.672014</td>
+<td>0.362981</td>
+<td>0.224351</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Average percentage viewed (%)</td>
+<td>-0.141652</td>
+<td>1.000000</td>
+<td>-0.202818</td>
+<td>-0.189377</td>
+<td>-0.163310</td>
+<td>-0.241190</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Likes</td>
+<td>0.484353</td>
+<td>-0.202818</td>
+<td>1.000000</td>
+<td>0.958418</td>
+<td>0.958740</td>
+<td>0.079380</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Views</td>
+<td>0.672014</td>
+<td>-0.189377</td>
+<td>0.958418</td>
+<td>1.000000</td>
+<td>0.923668</td>
+<td>0.134627</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Impressions</td>
+<td>0.362981</td>
+<td>-0.163310</td>
+<td>0.958740</td>
+<td>0.923668</td>
+<td>1.000000</td>
+<td>-0.015123</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Impressions click-through rate (%)</td>
+<td>0.224351</td>
+<td>-0.241190</td>
+<td>0.079380</td>
+<td>0.134627</td>
+<td>-0.015123</td>
+<td>1.000000</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-7d36d203-0706-4237-947f-d2126ae83f66')" title="Convert this dataframe to an interactive table." style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"></path><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"></path>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-7d36d203-0706-4237-947f-d2126ae83f66 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-7d36d203-0706-4237-947f-d2126ae83f66');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+</div>
+<div class="cell" data-outputid="3d7cd793-650b-4610-de7d-b165b5f658b0">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>raw.corr().style.background_gradient(cmap<span class="op">=</span><span class="st">'RdBu'</span>,vmin<span class="op">=-</span><span class="dv">1</span>,vmax<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>FutureWarning: The default value of numeric_only in DataFrame.corr is deprecated. In a future version, it will default to False. Select only valid columns or specify the value of numeric_only to silence this warning.
+  raw.corr().style.background_gradient(cmap='RdBu',vmin=-1,vmax=1)</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+
+
+<table id="T_a8dd0" class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
+<th id="T_a8dd0_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Comments added</th>
+<th id="T_a8dd0_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Average percentage viewed (%)</th>
+<th id="T_a8dd0_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Likes</th>
+<th id="T_a8dd0_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Views</th>
+<th id="T_a8dd0_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Impressions</th>
+<th id="T_a8dd0_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">Impressions click-through rate (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_a8dd0_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">Comments added</td>
+<td id="T_a8dd0_row0_col0" class="data row0 col0">1.000000</td>
+<td id="T_a8dd0_row0_col1" class="data row0 col1">-0.141652</td>
+<td id="T_a8dd0_row0_col2" class="data row0 col2">0.484353</td>
+<td id="T_a8dd0_row0_col3" class="data row0 col3">0.672014</td>
+<td id="T_a8dd0_row0_col4" class="data row0 col4">0.362981</td>
+<td id="T_a8dd0_row0_col5" class="data row0 col5">0.224351</td>
+</tr>
+<tr class="even">
+<td id="T_a8dd0_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">Average percentage viewed (%)</td>
+<td id="T_a8dd0_row1_col0" class="data row1 col0">-0.141652</td>
+<td id="T_a8dd0_row1_col1" class="data row1 col1">1.000000</td>
+<td id="T_a8dd0_row1_col2" class="data row1 col2">-0.202818</td>
+<td id="T_a8dd0_row1_col3" class="data row1 col3">-0.189377</td>
+<td id="T_a8dd0_row1_col4" class="data row1 col4">-0.163310</td>
+<td id="T_a8dd0_row1_col5" class="data row1 col5">-0.241190</td>
+</tr>
+<tr class="odd">
+<td id="T_a8dd0_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">Likes</td>
+<td id="T_a8dd0_row2_col0" class="data row2 col0">0.484353</td>
+<td id="T_a8dd0_row2_col1" class="data row2 col1">-0.202818</td>
+<td id="T_a8dd0_row2_col2" class="data row2 col2">1.000000</td>
+<td id="T_a8dd0_row2_col3" class="data row2 col3">0.958418</td>
+<td id="T_a8dd0_row2_col4" class="data row2 col4">0.958740</td>
+<td id="T_a8dd0_row2_col5" class="data row2 col5">0.079380</td>
+</tr>
+<tr class="even">
+<td id="T_a8dd0_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">Views</td>
+<td id="T_a8dd0_row3_col0" class="data row3 col0">0.672014</td>
+<td id="T_a8dd0_row3_col1" class="data row3 col1">-0.189377</td>
+<td id="T_a8dd0_row3_col2" class="data row3 col2">0.958418</td>
+<td id="T_a8dd0_row3_col3" class="data row3 col3">1.000000</td>
+<td id="T_a8dd0_row3_col4" class="data row3 col4">0.923668</td>
+<td id="T_a8dd0_row3_col5" class="data row3 col5">0.134627</td>
+</tr>
+<tr class="odd">
+<td id="T_a8dd0_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">Impressions</td>
+<td id="T_a8dd0_row4_col0" class="data row4 col0">0.362981</td>
+<td id="T_a8dd0_row4_col1" class="data row4 col1">-0.163310</td>
+<td id="T_a8dd0_row4_col2" class="data row4 col2">0.958740</td>
+<td id="T_a8dd0_row4_col3" class="data row4 col3">0.923668</td>
+<td id="T_a8dd0_row4_col4" class="data row4 col4">1.000000</td>
+<td id="T_a8dd0_row4_col5" class="data row4 col5">-0.015123</td>
+</tr>
+<tr class="even">
+<td id="T_a8dd0_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">Impressions click-through rate (%)</td>
+<td id="T_a8dd0_row5_col0" class="data row5 col0">0.224351</td>
+<td id="T_a8dd0_row5_col1" class="data row5 col1">-0.241190</td>
+<td id="T_a8dd0_row5_col2" class="data row5 col2">0.079380</td>
+<td id="T_a8dd0_row5_col3" class="data row5 col3">0.134627</td>
+<td id="T_a8dd0_row5_col4" class="data row5 col4">-0.015123</td>
+<td id="T_a8dd0_row5_col5" class="data row5 col5">1.000000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-outputid="dc7bdc2d-2743-459e-d581-5f29deb45a51">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>heatmap<span class="op">=</span>sns.heatmap(raw.corr(),cmap<span class="op">=</span><span class="st">"RdBu"</span>,annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">".3f"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>FutureWarning: The default value of numeric_only in DataFrame.corr is deprecated. In a future version, it will default to False. Select only valid columns or specify the value of numeric_only to silence this warning.
+  heatmap=sns.heatmap(raw.corr(),cmap="RdBu",annot=True, fmt=".3f")</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="pandas_revision_files/figure-html/cell-11-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="plotting-pairwise-distributions" class="level3">
+<h3 class="anchored" data-anchor-id="plotting-pairwise-distributions">Plotting pairwise distributions</h3>
+<div class="cell" data-outputid="0651dbd4-5cb6-4418-c83a-8c3c67d7ba1d">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="pandas_revision_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-outputid="0de8aac2-ea9f-47f5-c636-b7727a6b9857">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># removing outliers for better visualization</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>sns.pairplot(raw[raw[<span class="st">"Views"</span>]<span class="op">&lt;</span>raw[<span class="st">"Views"</span>].quantile(<span class="fl">0.99</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="pandas_revision_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="visualizing-time-series-data" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-time-series-data">Visualizing time series data</h3>
+<div class="cell" data-outputid="f752fa05-2358-4a4a-8a5e-3d95ef4e7ad7" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#converting the date column from object to datetime</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>raw[<span class="st">"Video publish time"</span>]<span class="op">=</span>pd.to_datetime(raw[<span class="st">"Video publish time"</span>])</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>raw.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 107 entries, 0 to 106
+Data columns (total 9 columns):
+ #   Column                              Non-Null Count  Dtype         
+---  ------                              --------------  -----         
+ 0   Content                             107 non-null    object        
+ 1   Video title                         107 non-null    object        
+ 2   Video publish time                  102 non-null    datetime64[ns]
+ 3   Comments added                      107 non-null    int64         
+ 4   Average percentage viewed (%)       107 non-null    float64       
+ 5   Likes                               107 non-null    int64         
+ 6   Views                               107 non-null    int64         
+ 7   Impressions                         107 non-null    int64         
+ 8   Impressions click-through rate (%)  106 non-null    float64       
+dtypes: datetime64[ns](1), float64(2), int64(4), object(2)
+memory usage: 7.6+ KB</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sorting according to the date</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>raw.sort_values(by<span class="op">=</span><span class="st">"Video publish time"</span>,inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-outputid="c396f434-0a9c-487f-c3a6-ec48da143826" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot the likes with time</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>(raw</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a> .set_index(<span class="st">"Video publish time"</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a> .sort_index()</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a> .Likes</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a> .resample(<span class="st">"m"</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a> .mean()</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a> .fillna(<span class="dv">0</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a> .plot(figsize<span class="op">=</span>(<span class="dv">16</span>,<span class="dv">3</span>))</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>&lt;Axes: xlabel='Video publish time'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="pandas_revision_files/figure-html/cell-16-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>We can plot a more interactive time series plot using plotly</p>
+<div class="cell" data-outputid="628f9d7a-381c-401f-fd1c-347da87bd3ca" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_timeseries(df, columns):</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.set_index(<span class="st">"Video publish time"</span>).sort_index()</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> px.line(</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>        df,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>df.index,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>columns,</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        template<span class="op">=</span><span class="st">"simple_white"</span>,</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>        hover_name<span class="op">=</span><span class="st">"Video title"</span>,</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="ss">f"Development: </span><span class="sc">{</span><span class="st">', '</span><span class="sc">.</span>join(columns)<span class="sc">.</span>title()<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    fig.update_layout(hovermode<span class="op">=</span><span class="st">"x unified"</span>, margin<span class="op">=</span><span class="bu">dict</span>(l<span class="op">=</span><span class="dv">0</span>, r<span class="op">=</span><span class="dv">0</span>, t<span class="op">=</span><span class="dv">50</span>, b<span class="op">=</span><span class="dv">5</span>))</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fig</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plot_timeseries(df<span class="op">=</span>raw, columns<span class="op">=</span>[<span class="st">"Likes"</span>,<span class="st">"Comments added"</span>])</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+
+<meta charset="utf-8">
+
+    <div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script type="text/javascript">if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script src="https://cdn.plot.ly/plotly-2.18.2.min.js"></script>                <div id="42b92857-f522-41bc-9c4b-18e17f1b76f3" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("42b92857-f522-41bc-9c4b-18e17f1b76f3")) {                    Plotly.newPlot(                        "42b92857-f522-41bc-9c4b-18e17f1b76f3",                        [{"hovertemplate":"<b>%{hovertext}</b><br><br>variable=Likes<br>Video publish time=%{x}<br>value=%{y}<extra></extra>","hovertext":["\ud83d\udcc8 How To Get Stock Data In Excel By Using VBA | Step-by-Step Tutorial","\ud83d\udcbb How To Create A GUI In Python Using Tkinter To Display COVID19 Stats | Step-by-Step Tutorial","How To Create An Interactive Gantt Diagram In Python Using Plotly & Excel | Step-by-Step Tutorial","How To Execute A Python Script From Excel Using VBA | Step-by-Step Tutorial [EASY]","How To Create A Treemap & Sunburst Chart In Python Using Plotly & Excel | Tutorial [EASY] \ud83d\udcbb","How To Create An Animated Bar Chart (Bar Race) In Python Using Plotly & Excel | Tutorial [EASY] \ud83d\udcbb","How To Create A Waterfall Chart In Python Using Plotly & Excel | Tutorial [EASY] \ud83d\udcbb","How To Create A Pie Chart In Python Using Plotly & Excel | Tutorial [EASY] \ud83d\udcbb","How To Create A Word Cloud In Python | Tutorial [EASY] \ud83d\udcbb","How to Get Stock Data & Export It To Excel Using Python | Tutorial [EASY] \ud83d\udcbb","How To Create A GUI Program In Python Using Tkinter (EASY) \ud83d\udcbb | Fun Fact Generator","\ud83d\udcc8 How To Create A Candlestick Chart In Python Using Plotly | Tutorial [EASY]","How To Create A Bar Race Animation Using Excel And Python | Tutorial [EASY] \ud83d\udcbb","Excel Template To Create Interactive Waterfall Charts | Combines VBA + Python \ud83d\udcbb","Send WhatsApp Messages From Excel With VBA Using Twilio | Step-by-Step Tutorial \ud83d\udcac","Turn Your Excel Worksheet Into An Exploratory Data Analysis Report In Just 3 Lines Of Python Code \ud83d\udd25","How To Send SMS Messages From Excel With VBA | Step-by-Step Tutorial \ud83d\udcac","How To Automate Excel Using Python | Combine Files & Create Charts \ud83e\udd13","Create Hand Drawn Charts In Excel Using Python (Fast & Easy) | Cutecharts Tutorial \ud83d\udcca","How To Send WhatsApp Messages From Excel Using VBA (Free & Easy) \ud83d\udcf2","How To Create An Interactive Population Pyramid in Python Using Plotly (Fast & Easy)","Create Gauge & Bullet Charts In 3 Seconds Using Excel and Python \ud83d\udc0d | Free Excel Template","Send Daily Push Notifications to Your Phone Using Python | Build A New Year's Resolution BOT (fast)","Quick Tip: Excel VBA Debugging","Install Miniconda (Python) with Jupyter Notebook and Setting Up Virtual Environments on Windows 10","How to Export WhatsApp Chat History to Excel using Python \ud83d\udcf2 (fast & easy) | Android and iOS","Solve Real-World Data Science Tasks in Python | Data Analysis with Pandas & Plotly (Full Tutorial)","How to Run Python in an Open Excel Workbook (EASY) | Combine Excel & Python | xlwings Tutorial","Read Messy & Poorly Structured Excel Files Using Pandas (Python)","Replace Excel Vlookup in Python Using Pandas (fast & easy) | Pandas Merge Tutorial","Pull Stock Data & Export It To Excel Using Python #shorts","Turn Your Excel File Into A Web App With Python (fast & easy) | Streamlit Tutorial","Deploy Your Streamlit Web App on Heroku For Free (fast & easy)","Build a Dividend & Portfolio Tracker in Excel by using Python [Free Template]","Build a Weather App in Excel by using Python","How to Merge Multiple PDF Files in Excel Using Python (fast & easy)","What is this channel all about...","How To Create Pandas Dataframe From Clipboard #Shorts","Automating Word Documents from Excel Using Python | \u2018docxtpl\u2019 Tutorial","Create A Liquid (Water Polo) Chart From Excel Data in Python | \u2018PyeCharts\u2019 Tutorials","Split Excel Data into Multiple Files by Column Values using Python (fast & easy)","How to Create an Excel Data Entry Form in 10 Minutes Using Python (No VBA) | Easy & Simple","How To Send Bulk SMS From Excel With TWILIO + VBA [Free Template]","Python: Split Each Excel Sheet Into Separate Files (fast & easy)","Excel SUMIFS, COUNTIFS & AVERAGEIFS in PYTHON (Pandas Library)","How to Send Push Notifications to Your Phone Using Excel & VBA","Build a Web App to Group & Plot Excel Files in Python with Streamlit","Python: Combine All Excel Files in a Folder into One Workbook","Send BULK SMS From Your OWN Number Using EXCEL [Free Template]","Python: Copy Data From Multiple Files to Master File | Read/Write Closed Excel Files Using Openpyxl","How To Remove \u201cMade with Streamlit\u201d, Hamburger Icon Menu & Streamlit Header","Send Bulk Emails From Your Gmail Account Using Excel VBA (with Attachments) | FREE TEMPLATE \ud83d\ude0e","Combine Excel & Python | Execute a Python Script from Excel using xlwings | Works on Windows & macOS","FREE Excel Add-in to Boost Your Productivity","Python: Group Excel Sheets & Save Them As Separate Workbooks","How To Execute An Excel VBA Macro From Python","Integrate Lottie Animations Inside Your Streamlit App!","Create A Pandas Dataframe Right Inside Excel","Turn An Excel Sheet Into An Interactive Dashboard Using Python (Streamlit)","How To Add A Contact Form To Your Streamlit App","How To Save Cookies & Login Data In Selenium VBA (Chrome Webdriver)","Automate Tinder with EXCEL | Step-By-Step Tutorial","4 Pandas Functions That I Wish I Knew Earlier","Automate Excel Reporting Using Python (Real-Life-Example) | Pandas, Plotly, Xlwings Tutorial","How to use the Pathlib Module in Python | QuickStart Guide for Beginners","How To Easily Insert Python Charts Into Excel","Create and Distribute Excel Files using Python and Outlook | Automate Excel with Python","Python: How to Loop Through Folders and Subfolders","Is PYTHON or VBA better? Which language should you learn? \ud83e\udd14","Add a snowflake animation to your streamlit web app (quick & easy)","Build a Website in only 12 minutes using Python & Streamlit","How to Split Each Excel Sheet Into a Separate File Using Python","Find & Replace Values in Multiple Excel Files using Python (fast & easy)","Save Excel Values From Each Worksheet In A Separate File","Export Pandas DataFrames to new & existing Excel workbook","Create a Data Entry Form for MS Word in 10 Minutes using Python | PySimpleGUI & docxtpl Tutorial","How to Merge Excel Files with Different Headers in Python","Generate MS Word documents in bulk based on an Excel list using Python","Supercharge Excel With Python \ud83d\ude80","Weighted Average Calculation in Pandas","The EASIEST way to insert a NAVIGATION into your Streamlit app","Download All Messages & Attachments From Outlook Using Python","Turn Your Excel Data Into An Interactive Dashboard Using Python | Pyecharts Tutorial","Compare Two Excel Sheets with Different Number of Rows and Find Differences using Python","Make a GUI with just ONE LINE of code using Python","Merge multiple PDF files based on their name using Python (Real-World Example)","Turn Your Excel Sheet Into An Interactive Application Using Python (Full Project)","How to Add a User Authentication Service (Login Form) in Streamlit","Execute a Python Script from Excel using the MyToolBelt add-in","How to Add a User Authentication Service (Login Form) in Streamlit + Database","Build A Streamlit Web App From Scratch (incl. NoSQL Database + interactive Sankey chart) \ud83d\ude80","How to Lock Cells in Excel using Python \ud83d\udd12 (by Cell Color, Font Style, Formula or Cell Value)","Create an advanced GUI app with PySimpleGUI (Full Tutorial)","How to create a Streamlit Multi-Page Web App","Export a Pandas Dataframe to Excel with Document Properties","Run SQL queries in EXCEL (just like a normal Excel formula \ud83e\udd2f)","Automate Emails Using Python! Build An Automatic Payment Reminder & Schedule Your Scripts Online","Build A Digital Resume Using Python & Streamlit","Convert the content from multiple TXT or CSV files into Excel using Python (Real-World Example)","5 Little Known Pandas Features \ud83e\udd13","Deploy Your Streamlit App To Render (Free Heroku Alternative)","The EASIEST way to load multiple EXCEL sheets in PANDAS","MyToolBelt Installation","Create Invoice Filepath","PySimpleGUI Retrieve Data","xlwings - demo","How to resolve \"pytube.exceptions.RegexMatchError\""],"legendgroup":"Likes","line":{"color":"#1F77B4","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"Likes","orientation":"v","showlegend":true,"x":["2020-07-05T00:00:00","2020-07-18T00:00:00","2020-07-25T00:00:00","2020-07-27T00:00:00","2020-08-02T00:00:00","2020-08-09T00:00:00","2020-08-15T00:00:00","2020-08-23T00:00:00","2020-08-30T00:00:00","2020-09-06T00:00:00","2020-09-13T00:00:00","2020-09-20T00:00:00","2020-09-26T00:00:00","2020-10-03T00:00:00","2020-11-08T00:00:00","2020-11-15T00:00:00","2020-11-21T00:00:00","2020-11-30T00:00:00","2020-12-12T00:00:00","2020-12-19T00:00:00","2020-12-24T00:00:00","2020-12-26T00:00:00","2021-01-01T00:00:00","2021-01-04T00:00:00","2021-01-09T00:00:00","2021-01-16T00:00:00","2021-01-31T00:00:00","2021-02-11T00:00:00","2021-02-20T00:00:00","2021-02-27T00:00:00","2021-03-06T00:00:00","2021-03-14T00:00:00","2021-03-20T00:00:00","2021-04-03T00:00:00","2021-04-10T00:00:00","2021-04-17T00:00:00","2021-04-19T00:00:00","2021-04-24T00:00:00","2021-05-01T00:00:00","2021-05-08T00:00:00","2021-05-15T00:00:00","2021-05-22T00:00:00","2021-05-29T00:00:00","2021-06-05T00:00:00","2021-06-12T00:00:00","2021-06-19T00:00:00","2021-06-26T00:00:00","2021-07-03T00:00:00","2021-07-10T00:00:00","2021-07-17T00:00:00","2021-07-22T00:00:00","2021-07-24T00:00:00","2021-07-31T00:00:00","2021-08-06T00:00:00","2021-08-13T00:00:00","2021-08-21T00:00:00","2021-08-28T00:00:00","2021-09-04T00:00:00","2021-09-11T00:00:00","2021-09-18T00:00:00","2021-09-21T00:00:00","2021-09-25T00:00:00","2021-10-02T00:00:00","2021-10-09T00:00:00","2021-10-16T00:00:00","2021-10-24T00:00:00","2021-11-06T00:00:00","2021-11-13T00:00:00","2021-12-17T00:00:00","2021-12-24T00:00:00","2022-01-01T00:00:00","2022-01-08T00:00:00","2022-01-15T00:00:00","2022-01-22T00:00:00","2022-01-29T00:00:00","2022-02-05T00:00:00","2022-02-12T00:00:00","2022-02-19T00:00:00","2022-02-26T00:00:00","2022-03-05T00:00:00","2022-03-12T00:00:00","2022-03-19T00:00:00","2022-03-27T00:00:00","2022-04-03T00:00:00","2022-04-10T00:00:00","2022-04-16T00:00:00","2022-05-06T00:00:00","2022-05-26T00:00:00","2022-06-04T00:00:00","2022-06-14T00:00:00","2022-06-26T00:00:00","2022-07-02T00:00:00","2022-07-17T00:00:00","2022-07-24T00:00:00","2022-08-01T00:00:00","2022-08-07T00:00:00","2022-08-21T00:00:00","2022-08-28T00:00:00","2022-09-03T00:00:00","2022-09-10T00:00:00","2022-09-17T00:00:00","2022-09-24T00:00:00",null,null,null,null,null],"xaxis":"x","y":[304,42,258,883,147,119,62,58,377,158,46,92,74,25,119,301,362,1377,48,3057,55,49,512,14,317,271,414,393,196,345,89,2398,966,140,87,103,47,139,745,70,237,3112,164,86,105,109,321,171,537,373,115,135,210,294,38,261,239,124,10175,128,46,45,360,414,256,438,270,308,271,58,1897,102,178,50,231,421,125,238,218,93,538,364,896,385,311,154,315,392,105,203,468,56,424,246,96,338,235,280,95,293,142,134,22,1,6,0,0],"yaxis":"y","type":"scatter"},{"hovertemplate":"<b>%{hovertext}</b><br><br>variable=Comments added<br>Video publish time=%{x}<br>value=%{y}<extra></extra>","hovertext":["\ud83d\udcc8 How To Get Stock Data In Excel By Using VBA | Step-by-Step Tutorial","\ud83d\udcbb How To Create A GUI In Python Using Tkinter To Display COVID19 Stats | Step-by-Step Tutorial","How To Create An Interactive Gantt Diagram In Python Using Plotly & Excel | Step-by-Step Tutorial","How To Execute A Python Script From Excel Using VBA | Step-by-Step Tutorial [EASY]","How To Create A Treemap & Sunburst Chart In Python Using Plotly & Excel | Tutorial [EASY] \ud83d\udcbb","How To Create An Animated Bar Chart (Bar Race) In Python Using Plotly & Excel | Tutorial [EASY] \ud83d\udcbb","How To Create A Waterfall Chart In Python Using Plotly & Excel | Tutorial [EASY] \ud83d\udcbb","How To Create A Pie Chart In Python Using Plotly & Excel | Tutorial [EASY] \ud83d\udcbb","How To Create A Word Cloud In Python | Tutorial [EASY] \ud83d\udcbb","How to Get Stock Data & Export It To Excel Using Python | Tutorial [EASY] \ud83d\udcbb","How To Create A GUI Program In Python Using Tkinter (EASY) \ud83d\udcbb | Fun Fact Generator","\ud83d\udcc8 How To Create A Candlestick Chart In Python Using Plotly | Tutorial [EASY]","How To Create A Bar Race Animation Using Excel And Python | Tutorial [EASY] \ud83d\udcbb","Excel Template To Create Interactive Waterfall Charts | Combines VBA + Python \ud83d\udcbb","Send WhatsApp Messages From Excel With VBA Using Twilio | Step-by-Step Tutorial \ud83d\udcac","Turn Your Excel Worksheet Into An Exploratory Data Analysis Report In Just 3 Lines Of Python Code \ud83d\udd25","How To Send SMS Messages From Excel With VBA | Step-by-Step Tutorial \ud83d\udcac","How To Automate Excel Using Python | Combine Files & Create Charts \ud83e\udd13","Create Hand Drawn Charts In Excel Using Python (Fast & Easy) | Cutecharts Tutorial \ud83d\udcca","How To Send WhatsApp Messages From Excel Using VBA (Free & Easy) \ud83d\udcf2","How To Create An Interactive Population Pyramid in Python Using Plotly (Fast & Easy)","Create Gauge & Bullet Charts In 3 Seconds Using Excel and Python \ud83d\udc0d | Free Excel Template","Send Daily Push Notifications to Your Phone Using Python | Build A New Year's Resolution BOT (fast)","Quick Tip: Excel VBA Debugging","Install Miniconda (Python) with Jupyter Notebook and Setting Up Virtual Environments on Windows 10","How to Export WhatsApp Chat History to Excel using Python \ud83d\udcf2 (fast & easy) | Android and iOS","Solve Real-World Data Science Tasks in Python | Data Analysis with Pandas & Plotly (Full Tutorial)","How to Run Python in an Open Excel Workbook (EASY) | Combine Excel & Python | xlwings Tutorial","Read Messy & Poorly Structured Excel Files Using Pandas (Python)","Replace Excel Vlookup in Python Using Pandas (fast & easy) | Pandas Merge Tutorial","Pull Stock Data & Export It To Excel Using Python #shorts","Turn Your Excel File Into A Web App With Python (fast & easy) | Streamlit Tutorial","Deploy Your Streamlit Web App on Heroku For Free (fast & easy)","Build a Dividend & Portfolio Tracker in Excel by using Python [Free Template]","Build a Weather App in Excel by using Python","How to Merge Multiple PDF Files in Excel Using Python (fast & easy)","What is this channel all about...","How To Create Pandas Dataframe From Clipboard #Shorts","Automating Word Documents from Excel Using Python | \u2018docxtpl\u2019 Tutorial","Create A Liquid (Water Polo) Chart From Excel Data in Python | \u2018PyeCharts\u2019 Tutorials","Split Excel Data into Multiple Files by Column Values using Python (fast & easy)","How to Create an Excel Data Entry Form in 10 Minutes Using Python (No VBA) | Easy & Simple","How To Send Bulk SMS From Excel With TWILIO + VBA [Free Template]","Python: Split Each Excel Sheet Into Separate Files (fast & easy)","Excel SUMIFS, COUNTIFS & AVERAGEIFS in PYTHON (Pandas Library)","How to Send Push Notifications to Your Phone Using Excel & VBA","Build a Web App to Group & Plot Excel Files in Python with Streamlit","Python: Combine All Excel Files in a Folder into One Workbook","Send BULK SMS From Your OWN Number Using EXCEL [Free Template]","Python: Copy Data From Multiple Files to Master File | Read/Write Closed Excel Files Using Openpyxl","How To Remove \u201cMade with Streamlit\u201d, Hamburger Icon Menu & Streamlit Header","Send Bulk Emails From Your Gmail Account Using Excel VBA (with Attachments) | FREE TEMPLATE \ud83d\ude0e","Combine Excel & Python | Execute a Python Script from Excel using xlwings | Works on Windows & macOS","FREE Excel Add-in to Boost Your Productivity","Python: Group Excel Sheets & Save Them As Separate Workbooks","How To Execute An Excel VBA Macro From Python","Integrate Lottie Animations Inside Your Streamlit App!","Create A Pandas Dataframe Right Inside Excel","Turn An Excel Sheet Into An Interactive Dashboard Using Python (Streamlit)","How To Add A Contact Form To Your Streamlit App","How To Save Cookies & Login Data In Selenium VBA (Chrome Webdriver)","Automate Tinder with EXCEL | Step-By-Step Tutorial","4 Pandas Functions That I Wish I Knew Earlier","Automate Excel Reporting Using Python (Real-Life-Example) | Pandas, Plotly, Xlwings Tutorial","How to use the Pathlib Module in Python | QuickStart Guide for Beginners","How To Easily Insert Python Charts Into Excel","Create and Distribute Excel Files using Python and Outlook | Automate Excel with Python","Python: How to Loop Through Folders and Subfolders","Is PYTHON or VBA better? Which language should you learn? \ud83e\udd14","Add a snowflake animation to your streamlit web app (quick & easy)","Build a Website in only 12 minutes using Python & Streamlit","How to Split Each Excel Sheet Into a Separate File Using Python","Find & Replace Values in Multiple Excel Files using Python (fast & easy)","Save Excel Values From Each Worksheet In A Separate File","Export Pandas DataFrames to new & existing Excel workbook","Create a Data Entry Form for MS Word in 10 Minutes using Python | PySimpleGUI & docxtpl Tutorial","How to Merge Excel Files with Different Headers in Python","Generate MS Word documents in bulk based on an Excel list using Python","Supercharge Excel With Python \ud83d\ude80","Weighted Average Calculation in Pandas","The EASIEST way to insert a NAVIGATION into your Streamlit app","Download All Messages & Attachments From Outlook Using Python","Turn Your Excel Data Into An Interactive Dashboard Using Python | Pyecharts Tutorial","Compare Two Excel Sheets with Different Number of Rows and Find Differences using Python","Make a GUI with just ONE LINE of code using Python","Merge multiple PDF files based on their name using Python (Real-World Example)","Turn Your Excel Sheet Into An Interactive Application Using Python (Full Project)","How to Add a User Authentication Service (Login Form) in Streamlit","Execute a Python Script from Excel using the MyToolBelt add-in","How to Add a User Authentication Service (Login Form) in Streamlit + Database","Build A Streamlit Web App From Scratch (incl. NoSQL Database + interactive Sankey chart) \ud83d\ude80","How to Lock Cells in Excel using Python \ud83d\udd12 (by Cell Color, Font Style, Formula or Cell Value)","Create an advanced GUI app with PySimpleGUI (Full Tutorial)","How to create a Streamlit Multi-Page Web App","Export a Pandas Dataframe to Excel with Document Properties","Run SQL queries in EXCEL (just like a normal Excel formula \ud83e\udd2f)","Automate Emails Using Python! Build An Automatic Payment Reminder & Schedule Your Scripts Online","Build A Digital Resume Using Python & Streamlit","Convert the content from multiple TXT or CSV files into Excel using Python (Real-World Example)","5 Little Known Pandas Features \ud83e\udd13","Deploy Your Streamlit App To Render (Free Heroku Alternative)","The EASIEST way to load multiple EXCEL sheets in PANDAS","MyToolBelt Installation","Create Invoice Filepath","PySimpleGUI Retrieve Data","xlwings - demo","How to resolve \"pytube.exceptions.RegexMatchError\""],"legendgroup":"Comments added","line":{"color":"#FF7F0E","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"Comments added","orientation":"v","showlegend":true,"x":["2020-07-05T00:00:00","2020-07-18T00:00:00","2020-07-25T00:00:00","2020-07-27T00:00:00","2020-08-02T00:00:00","2020-08-09T00:00:00","2020-08-15T00:00:00","2020-08-23T00:00:00","2020-08-30T00:00:00","2020-09-06T00:00:00","2020-09-13T00:00:00","2020-09-20T00:00:00","2020-09-26T00:00:00","2020-10-03T00:00:00","2020-11-08T00:00:00","2020-11-15T00:00:00","2020-11-21T00:00:00","2020-11-30T00:00:00","2020-12-12T00:00:00","2020-12-19T00:00:00","2020-12-24T00:00:00","2020-12-26T00:00:00","2021-01-01T00:00:00","2021-01-04T00:00:00","2021-01-09T00:00:00","2021-01-16T00:00:00","2021-01-31T00:00:00","2021-02-11T00:00:00","2021-02-20T00:00:00","2021-02-27T00:00:00","2021-03-06T00:00:00","2021-03-14T00:00:00","2021-03-20T00:00:00","2021-04-03T00:00:00","2021-04-10T00:00:00","2021-04-17T00:00:00","2021-04-19T00:00:00","2021-04-24T00:00:00","2021-05-01T00:00:00","2021-05-08T00:00:00","2021-05-15T00:00:00","2021-05-22T00:00:00","2021-05-29T00:00:00","2021-06-05T00:00:00","2021-06-12T00:00:00","2021-06-19T00:00:00","2021-06-26T00:00:00","2021-07-03T00:00:00","2021-07-10T00:00:00","2021-07-17T00:00:00","2021-07-22T00:00:00","2021-07-24T00:00:00","2021-07-31T00:00:00","2021-08-06T00:00:00","2021-08-13T00:00:00","2021-08-21T00:00:00","2021-08-28T00:00:00","2021-09-04T00:00:00","2021-09-11T00:00:00","2021-09-18T00:00:00","2021-09-21T00:00:00","2021-09-25T00:00:00","2021-10-02T00:00:00","2021-10-09T00:00:00","2021-10-16T00:00:00","2021-10-24T00:00:00","2021-11-06T00:00:00","2021-11-13T00:00:00","2021-12-17T00:00:00","2021-12-24T00:00:00","2022-01-01T00:00:00","2022-01-08T00:00:00","2022-01-15T00:00:00","2022-01-22T00:00:00","2022-01-29T00:00:00","2022-02-05T00:00:00","2022-02-12T00:00:00","2022-02-19T00:00:00","2022-02-26T00:00:00","2022-03-05T00:00:00","2022-03-12T00:00:00","2022-03-19T00:00:00","2022-03-27T00:00:00","2022-04-03T00:00:00","2022-04-10T00:00:00","2022-04-16T00:00:00","2022-05-06T00:00:00","2022-05-26T00:00:00","2022-06-04T00:00:00","2022-06-14T00:00:00","2022-06-26T00:00:00","2022-07-02T00:00:00","2022-07-17T00:00:00","2022-07-24T00:00:00","2022-08-01T00:00:00","2022-08-07T00:00:00","2022-08-21T00:00:00","2022-08-28T00:00:00","2022-09-03T00:00:00","2022-09-10T00:00:00","2022-09-17T00:00:00","2022-09-24T00:00:00",null,null,null,null,null],"xaxis":"x","y":[58,9,25,59,13,7,5,13,23,15,3,6,7,6,31,10,53,41,5,885,5,2,26,2,20,46,40,24,20,28,4,77,114,21,8,19,8,10,66,6,54,207,58,23,9,17,23,20,158,20,10,46,17,49,12,32,24,8,192,8,6,7,33,32,21,33,34,21,23,3,105,21,28,6,30,62,15,53,12,6,46,53,64,27,30,17,20,66,11,35,42,10,31,32,6,22,24,23,14,11,18,11,5,5,4,0,0],"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"rgb(36,36,36)"},"error_y":{"color":"rgb(36,36,36)"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"rgb(36,36,36)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(36,36,36)"},"baxis":{"endlinecolor":"rgb(36,36,36)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(36,36,36)"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"histogram2d"}],"histogram":[{"marker":{"line":{"color":"white","width":0.6}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"rgb(237,237,237)"},"line":{"color":"white"}},"header":{"fill":{"color":"rgb(217,217,217)"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"colorscale":{"diverging":[[0.0,"rgb(103,0,31)"],[0.1,"rgb(178,24,43)"],[0.2,"rgb(214,96,77)"],[0.3,"rgb(244,165,130)"],[0.4,"rgb(253,219,199)"],[0.5,"rgb(247,247,247)"],[0.6,"rgb(209,229,240)"],[0.7,"rgb(146,197,222)"],[0.8,"rgb(67,147,195)"],[0.9,"rgb(33,102,172)"],[1.0,"rgb(5,48,97)"]],"sequential":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"sequentialminus":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]]},"colorway":["#1F77B4","#FF7F0E","#2CA02C","#D62728","#9467BD","#8C564B","#E377C2","#7F7F7F","#BCBD22","#17BECF"],"font":{"color":"rgb(36,36,36)"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"white"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"},"bgcolor":"white","radialaxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"rgb(232,232,232)","gridwidth":2,"linecolor":"rgb(36,36,36)","showbackground":true,"showgrid":false,"showline":true,"ticks":"outside","zeroline":false,"zerolinecolor":"rgb(36,36,36)"},"yaxis":{"backgroundcolor":"white","gridcolor":"rgb(232,232,232)","gridwidth":2,"linecolor":"rgb(36,36,36)","showbackground":true,"showgrid":false,"showline":true,"ticks":"outside","zeroline":false,"zerolinecolor":"rgb(36,36,36)"},"zaxis":{"backgroundcolor":"white","gridcolor":"rgb(232,232,232)","gridwidth":2,"linecolor":"rgb(36,36,36)","showbackground":true,"showgrid":false,"showline":true,"ticks":"outside","zeroline":false,"zerolinecolor":"rgb(36,36,36)"}},"shapedefaults":{"fillcolor":"black","line":{"width":0},"opacity":0.3},"ternary":{"aaxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"},"baxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"},"bgcolor":"white","caxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside","title":{"standoff":15},"zeroline":false,"zerolinecolor":"rgb(36,36,36)"},"yaxis":{"automargin":true,"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside","title":{"standoff":15},"zeroline":false,"zerolinecolor":"rgb(36,36,36)"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"Video publish time"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"value"}},"legend":{"title":{"text":"variable"},"tracegroupgap":0},"title":{"text":"Development: Likes, Comments Added"},"margin":{"l":0,"r":0,"t":50,"b":5},"hovermode":"x unified"},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('42b92857-f522-41bc-9c4b-18e17f1b76f3');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                            </script>        </div>
+
+
+</div>
+</div>
+<p>I have used the following as reference for trying out these functionalities: https://www.youtube.com/watch?v=RXEP1R_ZNrs</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

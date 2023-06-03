@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://github.com/eshan-rg/eshan-rg.github.io/achievements.html</loc>
-    <lastmod>2023-05-07T05:59:59.964Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/eshan-rg/eshan-rg.github.io/publications.html</loc>
-    <lastmod>2023-05-07T06:00:00.604Z</lastmod>
+    <loc>https://github.com/eshan-rg/eshan-rg.github.io/teaching.html</loc>
+    <lastmod>2023-06-03T06:37:45.481Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/eshan-rg/eshan-rg.github.io/blogs.html</loc>
-    <lastmod>2023-05-07T06:00:01.016Z</lastmod>
+    <lastmod>2023-06-03T06:37:46.389Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/eshan-rg/eshan-rg.github.io/teaching.html</loc>
-    <lastmod>2023-05-07T06:00:01.312Z</lastmod>
+    <loc>https://github.com/eshan-rg/eshan-rg.github.io/publications.html</loc>
+    <lastmod>2023-06-03T06:37:46.713Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/eshan-rg/eshan-rg.github.io/achievements.html</loc>
+    <lastmod>2023-06-03T06:37:47.085Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/eshan-rg/eshan-rg.github.io/blogs/pandas_revision.html</loc>
+    <lastmod>2023-06-03T06:37:48.045Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/eshan-rg/eshan-rg.github.io/blogs/fcnn_on_mnist.html</loc>
-    <lastmod>2023-05-07T06:00:01.784Z</lastmod>
+    <lastmod>2023-06-03T06:37:48.573Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/eshan-rg/eshan-rg.github.io/index.html</loc>
-    <lastmod>2023-05-07T06:00:02.092Z</lastmod>
+    <lastmod>2023-06-03T06:37:48.901Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/eshan-rg/eshan-rg.github.io/read.html</loc>
-    <lastmod>2023-05-07T06:00:02.408Z</lastmod>
+    <lastmod>2023-06-03T06:37:49.209Z</lastmod>
   </url>
 </urlset>

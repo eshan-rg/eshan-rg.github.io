@@ -2,6 +2,7 @@
   {
     "listing": "/blogs.html",
     "items": [
+      "/blogs/pandas_revision.html",
       "/blogs/fcnn_on_mnist.html"
     ]
   }
