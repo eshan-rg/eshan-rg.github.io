@@ -24,8 +24,8 @@ about:
       href: https://scholar.google.com/citations?user=8Jzb7fQAAAAJ&hl=en&oi=ao   
 ---
 :::{#hero-heading}
-I am a senior undergraduate majoring in Computer Science and Engineering at the Indian Institute of Technology Gandhinagar. I am a creative, diligent, and result-oriented individual who always looks for new opportunities to grow.
+I am a Post Baccalaureate Fellow at the Robert Bosch Center for Data Science and Artificial Intelligence at IIT Madras, working under the guidance of Prof. Balaraman Ravindran. I recently completed my B.Tech with Honours in Computer Science and Engineering from IIT Gandhinagar. I am a creative, diligent, and result-oriented individual who always looks for new opportunities to grow.
 
-My research interests include Applied Machine Learning, Bayesian Learning, Computer Vision, and Data Science. I am passionate about applying Artificial Intelligence to critical applications with a broader impact.
+My research interests include Applied Machine Learning, Computer Vision, Bayesian Learning, and Data Science. I am passionate about applying Artificial Intelligence to critical applications with a broader impact.
 :::
 
