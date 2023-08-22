@@ -18,7 +18,7 @@ about:
       href: https://www.linkedin.com/in/eshan-gujarathi/  
     - icon: envelope
       text: Email
-      href: mailto:eshan-rg@iitgn.ac.in
+      href: mailto:eshangujarathi15@gmail.com
     - icon: book
       text: Google Scholar
       href: https://scholar.google.com/citations?user=8Jzb7fQAAAAJ&hl=en&oi=ao   
